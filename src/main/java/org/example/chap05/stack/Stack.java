@@ -1,4 +1,4 @@
-package org.example.chap5.stack;
+package org.example.chap05.stack;
 
 class Node<E>{
     private E item;//저장할 값
