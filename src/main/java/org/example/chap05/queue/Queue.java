@@ -1,5 +1,7 @@
 package org.example.chap05.queue;
 
+import java.util.LinkedList;
+
 class Node<E> {
 
     private E item;
@@ -34,13 +36,13 @@ public class Queue<E> {
 
     // 큐가 비었는지 확인
     public boolean isEmpty() {
-        return front.getLink() == null;
+        return front.getLink() == null && rear.getLink()==null;
     }
 
     // 큐에 데이터 추가 (rear쪽으로)
-    public void add(int item) {
+    public void add(E item) {
         // 새 노드 생성
-        Node newNode = new Node<>();
+        Node<E> newNode = new Node<>();
         newNode.setItem(item); // 새 노드에 자료 저장
 
         // 링크 연결
@@ -66,9 +68,13 @@ public class Queue<E> {
 
             // front가 삭제 대상 뒤에 있는 노드를 감시
             front.setLink(delTarget.getLink());
-
             return delTarget.getItem();
         }
     }
 
 }
+
+/*
+* 실제로 Queue를 사용할때
+* java.util.Queue<String> queue = new LinkedList<>(); 이렇게 사용해야함
+* */
