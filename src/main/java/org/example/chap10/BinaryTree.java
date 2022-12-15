@@ -77,4 +77,37 @@ public class BinaryTree {
             }
         }
     }
+
+    //============= 순회 =============//
+
+    // 전위 순회 (pre order) - 중전후
+    public void preOrder(Node tempRoot) {
+        if (tempRoot != null) {
+            System.out.printf("%d ", tempRoot.getKey());
+            preOrder(tempRoot.getLeftChild());
+            preOrder(tempRoot.getRightChild());
+        }
+    }
+
+    // 중위 순회 (in order) - 전중후
+    public void inOrder(Node tempRoot) {
+        if (tempRoot != null) {
+            inOrder(tempRoot.getLeftChild());
+            System.out.printf("%d ", tempRoot.getKey());
+            inOrder(tempRoot.getRightChild());
+        }
+    }
+
+    // 후위 순회 (post order) - 전후중
+    public void postOrder(Node tempRoot) {
+        if (tempRoot != null) {
+            postOrder(tempRoot.getLeftChild());
+            postOrder(tempRoot.getRightChild());
+            System.out.printf("%d ", tempRoot.getKey());
+        }
+    }
+
+    public Node getRoot() {
+        return root;
+    }
 }
