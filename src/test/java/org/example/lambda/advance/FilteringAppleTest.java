@@ -4,9 +4,11 @@ import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static java.util.Comparator.*;
 import static org.example.lambda.advance.Apple.Color.GREEN;
 import static org.example.lambda.advance.Apple.Color.RED;
 import static org.example.lambda.advance.Book.Genre.*;
@@ -65,6 +67,9 @@ class FilteringAppleTest {
         // 정수 리스트
         List<Integer> numbers = Arrays.asList(1,2,3,4,5,6,7,8,9,10);
 
+
+
+
         // 홀수만 필터링
         List<Integer> integers = filter(numbers, n -> n % 3 == 0);
         for (Integer n : integers) {
@@ -77,6 +82,35 @@ class FilteringAppleTest {
                 .filter(n -> n % 2 == 0)
                 .collect(Collectors.toList());//List로만 전달하는게 아니라 다른 자료구조 형태로 전달 가능
         System.out.println(integerList);
+
     }
 
+
+    @Test
+    void sortTest(){
+        List<Apple> inventory = new ArrayList<>();
+        inventory.add(new Apple(80, GREEN));
+        inventory.add(new Apple(155, GREEN));
+        inventory.add(new Apple(120, RED));
+        inventory.add(new Apple(90, GREEN));
+        inventory.add(new Apple(110, RED));
+        inventory.add(new Apple(50, RED));
+
+        //정렬 (정수를 정렬하는 것이 객체를 정렬하려면 기준이 있어야한다.)
+/*        inventory.sort(new Comparator<Apple>() {
+            @Override
+            public int compare(Apple o1, Apple o2) {
+                return o1.getWeight() - o2.getWeight(); //양수면 뒤로 음수가 나오면 그 자리에서 대기 즉 무게 오름차순
+            }
+        });*/
+        //import static java.util.Comparator.*;
+        //무게 오름차 정렬
+        /*inventory.sort(comparing(apple -> apple.getWeight()));*/
+        inventory.sort(comparing(Apple::getWeight));
+
+        //무게 내림차 정렬
+        inventory.sort(comparing(Apple::getWeight).reversed());
+        inventory.forEach(System.out::println);
+
+    }
 }
