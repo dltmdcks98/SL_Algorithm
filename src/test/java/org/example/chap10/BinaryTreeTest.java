@@ -58,6 +58,20 @@ class BinaryTreeTest {
         tree.delete(27);
         System.out.println("\n===================27 삭제 트리 출력==========");
         tree.display();
+
+        System.out.println("\n===================이진 트리 문제점 ==========");
+
+        BinaryTree tree2 = new BinaryTree();
+        tree2.add(50);
+        tree2.add(40);
+        tree2.add(30);
+        tree2.add(20);
+
+        tree2.display();
+        /**
+         * 계속 작은 데이터만 넣으면 선형 구조와 다르지 않다
+         */
+
     }
 
 
