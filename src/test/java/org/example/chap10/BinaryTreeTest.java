@@ -35,6 +35,7 @@ class BinaryTreeTest {
         tree.add(50);
         tree.add(27);
         tree.add(68);
+
         tree.add(12);
         tree.add(36);
         tree.add(55);
@@ -50,6 +51,14 @@ class BinaryTreeTest {
         tree.inOrder(tree.getRoot());
         System.out.println();
         tree.postOrder(tree.getRoot());
+
+        //트리 출력
+        System.out.println("\n===================트리 출력==========");
+        tree.display();
+        tree.delete(27);
+        System.out.println("\n===================27 삭제 트리 출력==========");
+        tree.display();
     }
+
 
 }
