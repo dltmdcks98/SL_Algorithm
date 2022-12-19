@@ -4,6 +4,7 @@ import org.example.chap11.Vertex;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 import java.util.Stack;
 
 //인접 리스트 방식
@@ -101,5 +102,35 @@ public class GraphList {
                 DFS2(v); // 방문되지 않은 정점 재귀호출
             }
         }
+    }
+
+    // 너비 우선 탐색
+    public void BFS(Vertex start) {
+        // 너비우선 탐색에 필요한 큐 생성
+        Queue<Vertex> queue = new LinkedList<>();
+
+        // 탐색 시작 정점을 큐에 저장
+        queue.offer(start);
+
+        // 큐가 빌 때까지 BFS 반복 수행
+        while (!queue.isEmpty()) {
+
+            // 큐에서 정점을 꺼낸다.
+            Vertex current = queue.poll();
+            // 해당 정점에 방문표시
+            current.setVisitFlag(true);
+            // 방문한 정점의 데이터를 가져오기
+            System.out.printf("%s ", current.getData());
+
+            // 해당 정점에 연결되어 있는 다른 정점들을 찾아서 모두 큐에 저장
+            List<Vertex> list = adjList.get(current.getId());
+            for (Vertex v : list) {
+                // 방문한 적 없는 정점만 큐에 추가
+                if (!v.isVisitFlag()) {
+                    queue.offer(v);
+                }
+            }
+        }
+        System.out.println();
     }
 }
