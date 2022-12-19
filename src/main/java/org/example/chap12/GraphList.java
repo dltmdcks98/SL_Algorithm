@@ -76,4 +76,30 @@ public class GraphList {
         }
         System.out.println();
     }
+
+    // 깊이 우선 탐색 구현 - 재귀
+    public void DFS2(Vertex current) {
+
+        // 재귀 탈출 조건 - 이미 방문했으면 나오기
+        if (current.isVisitFlag()) {
+            System.out.println();
+            return;
+        }
+
+        // 현재 정점에 방문처리
+        current.setVisitFlag(true);
+        // 현재 정점을 출력
+        System.out.printf("%s ", current.getData());
+
+        // 현재 정점에 연결된 모든 정점을 가져오기
+        List<Vertex> connectedVertices = adjList.get(current.getId());
+
+        for (int i = connectedVertices.size() - 1; i >= 0; i--) {
+            // 연결된 정점하나 가져오기
+            Vertex v = connectedVertices.get(i);
+            if (!v.isVisitFlag()) {
+                DFS2(v); // 방문되지 않은 정점 재귀호출
+            }
+        }
+    }
 }
